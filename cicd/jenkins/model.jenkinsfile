@@ -17,12 +17,6 @@ pipeline {
         ecrRepository = "${params.TARGET_AWS_ACCOUNT_NUMBER}.dkr.ecr.${params.AWS_REGION}.amazonaws.com/${params.ECR_REGISTRY_ID}"
     }
     stages{
-        stage('Initialize Docker'){
-            steps {
-                def docker = tool 'Docker'
-                env.PATH = "${dockerHome}/bin:${env.PATH}"
-            }
-        }
         stage('Build Docker Image') {
             steps {
                 script {

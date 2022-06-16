@@ -20,7 +20,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    image = docker.sock.build(ecrRepository, '.')
+                    image = docker.build(ecrRepository, '.')
                 }
             }
         }

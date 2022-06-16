@@ -45,8 +45,10 @@ pipeline {
             }
         }
         stage('Terraform') {
-            sh 'terraform init'
-            sh 'terraform plan -var ${paramMap}'
+            steps {
+                sh 'terraform init'
+                sh 'terraform plan -var ${paramMap}'
+            }
         }
     }
 }

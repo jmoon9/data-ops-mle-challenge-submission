@@ -23,6 +23,11 @@ def predict():
 def index():
     return 'Bitcoin Price Inference'
 
+# Sagemaker Inference Health Check
+@app.route('/ping', methods=['GET'])
+def index():
+    return 'Healthy'
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

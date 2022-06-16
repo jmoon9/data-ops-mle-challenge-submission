@@ -24,6 +24,10 @@ Tasks:
     - Consistency --> Format check, cross referenceable with same results
 
 * Introduce slack alerts for failure of either of the above. Here's some sample code:
+    - SNS topic --> post a notification to when Sagemaker inference fails
+        - Inference Notification --> https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AsyncInferenceNotificationConfig.html
+        - Slack Webhook sns topic subscription --> https://stackoverflow.com/questions/49341187/confirming-aws-sns-topic-subscription-for-slack-webhook#:~:text=On%20your%20slack%20channel%2C%20add,provide%20the%20slack%20email%20above.
+        
 
 '''
 

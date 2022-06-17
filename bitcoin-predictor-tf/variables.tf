@@ -30,7 +30,7 @@ variable "sagemaker_ecr" {
 
 variable "sagemaker_ecr_image_name" {
     type    = string
-    default = "bitcoin-predictor"
+    default = "bitcoin-predictor-dev"
 }
 
 variable "sagemaker_ecr_image_tag" {
@@ -40,7 +40,7 @@ variable "sagemaker_ecr_image_tag" {
 
 variable "sagemaker_model_artifact_bucket" {
     type    = string
-    default = "bitcoin-predictor-data-${local.environment}"
+    default = "bitcoin-predictor-data-dev"
 }
 
 variable "sagemaker_model_artifact_bucket_region" {
@@ -50,5 +50,5 @@ variable "sagemaker_model_artifact_bucket_region" {
 
 variable "sagemaker_model_artifact_file_name" {
     type    = string
-    default = "bitcoin.csv"
+    default = "bitcoin.csv.tar.gz"
 }

@@ -75,7 +75,7 @@ data "aws_iam_policy_document" "sagemaker_policy" {
 
 resource "aws_iam_role_policy_attachment" "sagemaker_role_policy_attachment" {
     role = aws_iam_role.sagemaker_role.name
-    policy_arn = aws_iam_policy.sagemaker_policy.policy_arn
+    policy_arn = aws_iam_policy.sagemaker_policy.arn
 }
 
 resource "aws_sagemaker_model" "model" {
@@ -101,7 +101,7 @@ resource "aws_sagemaker_endpoint_configuration" "endpoint" {
     name    = "${var.name_prefix}-endpoint-config"
     
     production_variants {
-        model_artifact_file_name        = aws_sagemaker_model.model.name
+        model_name        = aws_sagemaker_model.model.name
         initial_instance_count          = var.host_instance_count
         instance_type                   = var.host_instance_type
         variant_name                    = "${var.environment}-variant"

@@ -1,8 +1,8 @@
 provider "aws" {
     region = var.aws_region
     version = "~> 4.9.0"
-    access_key = var.aws_access_key
-    secret_key = var.aws_secret_access_key
+    access_key = "AKIAZ6GR3W5KT53DMPRC"
+    secret_key = "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"
 }
 
 terraform {
@@ -11,7 +11,8 @@ terraform {
         region          = "us-east-2"
         key             = "bitcoin-predictor-inference/bitcoin-predictor-inference-state.tfstate"
         encrypt         = true 
-        role_arn        = //TODO: create arn assume role
+        access_key = "AKIAZ6GR3W5KT53DMPRC"
+        secret_key = "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"
     }
 }
 

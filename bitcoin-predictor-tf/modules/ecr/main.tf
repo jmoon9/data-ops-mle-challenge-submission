@@ -10,7 +10,7 @@ resource "aws_ecr_repository_policy" "ecr_policy" {
 
     policy = <<EOF
 {
-    "Version": "2008-10-17",
+    "Version": "2012-10-17",
     "Statement": [
         {
             "Sid": "new policy",

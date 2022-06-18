@@ -17,6 +17,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy all the files from the project’s root to the working directory
 COPY src/ /src/
+COPY model/ /model/
 RUN ls -la /src/*
 
 CMD ["python3", "/src/app.py"]

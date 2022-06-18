@@ -14,7 +14,8 @@ pipeline {
     environment{
         
         image = ''
-        ecrRepository = "${params.TARGET_AWS_ACCOUNT_NUMBER}.dkr.ecr.${params.AWS_REGION}.amazonaws.com/${params.ECR_REGISTRY_ID}"
+        ecrRepository = "${params.TARGET_AWS_ACCOUNT_NUMBER}.dkr.ecr.${params.AWS_REGION}.amazonaws.com/${params.ECR_REGISTRY_ID}-${params.ENVIRONMENT}"
+
     }
     stages{
         stage('Build Docker Image') {

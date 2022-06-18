@@ -20,8 +20,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    // image = docker.build(ecrRepository, '.')
-                    sh 'docker build ${ecrRepository} .'
+                    image = docker.build(ecrRepository, '.')
+                    // sh 'docker build ${ecrRepository} .'
                 }
             }
         }
@@ -34,22 +34,22 @@ pipeline {
                 }
             }
         }
-        stage('Load Parameters') {
-            steps {
-                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'terraform-user']]){
-                    script {
-                        paramMap.put('aws_access_key', accessKeyVariable)
-                        paramMap.put('aws_secret_access_key', secretKeyVariable)
-                        paramMap.put('environment', params.ENVIRONMENT)
-                    }
-                }
-            }
-        }
-        stage('Terraform') {
-            steps {
-                sh 'terraform init'
-                sh 'terraform plan -var ${paramMap}'
-            }
-        }
+        // stage('Load Parameters') {
+        //     steps {
+        //         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'terraform-user']]){
+        //             script {
+        //                 paramMap.put('aws_access_key', accessKeyVariable)
+        //                 paramMap.put('aws_secret_access_key', secretKeyVariable)
+        //                 paramMap.put('environment', params.ENVIRONMENT)
+        //             }
+        //         }
+        //     }
+        // }
+        // stage('Terraform') {
+        //     steps {
+        //         sh 'terraform init'
+        //         sh 'terraform plan -var ${paramMap}'
+        //     }
+        // }
     }
 }

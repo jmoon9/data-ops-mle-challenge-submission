@@ -50,5 +50,5 @@ variable "sagemaker_model_artifact_bucket_region" {
 
 variable "sagemaker_model_artifact_file_name" {
     type    = string
-    default = "bitcoin.csv.tar.gz"
+    default = "bitcoin.tar.gz"
 }

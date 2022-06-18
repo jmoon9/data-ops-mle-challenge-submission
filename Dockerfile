@@ -9,7 +9,7 @@ RUN python3 --version
 RUN pip3 --version
 
 # set the working directory for containers
-WORKDIR  /usr/src/<app-name>
+WORKDIR  /usr/src/bitcoin-predictor
 
 # Installing python dependencies
 COPY requirements.txt .
@@ -19,5 +19,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY src/ /src/
 RUN ls -la /src/*
 
-# Running Python Application
 CMD ["python3", "/src/app.py"]

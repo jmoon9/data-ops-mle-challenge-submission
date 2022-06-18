@@ -84,7 +84,7 @@ resource "aws_sagemaker_model" "model" {
 
     primary_container {
         image = "${var.sagemaker_ecr}/${var.sagemaker_ecr_image_name}:${var.sagemaker_ecr_image_tag}"
-        model_data_url = "https://${var.model_artifact_source_bucket}.s3.${var.model_artifact_source_bucket_region}.amazonaws.com/${var.model_artifact_file_name}"
+        # model_data_url = "https://${var.model_artifact_source_bucket}.s3.${var.model_artifact_source_bucket_region}.amazonaws.com/${var.model_artifact_file_name}"
     }
     
     tags = var.tags

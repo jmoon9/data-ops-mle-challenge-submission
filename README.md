@@ -9,8 +9,11 @@ Here's a quick challenge for you to demonstrate your skills as a DataOps or Mach
 We have a sample model for predicing the price of Bitcoin in the next second based on the prices from the last 60 seconds whipped up by one of our data scientists - this is a quick and dirty model, wrapped in a quick and dirty API, packaged into a quick and dirty container, and we've decided to YOLO and test in prod.
 
 Tasks:
+
 * This is really quick and dirty - how would you do this better?
+
     Changes made to app.py:
+    
         - Loaded h5 model in place of protocol buffer
             ○ Predict method of protobuf model was unrecognized in flask
 
@@ -30,10 +33,12 @@ Tasks:
             ○ Slack webhook integration
 
     Changes to Dockerfile:
+    
     	- Expose port 5000
 	    - Copy /model/ directory to docker volume
 
     EC2 Hosting:
+    
         - Create Docker image on EC2
         - Run container with port map to 5000
         - Container availability testing:
@@ -42,6 +47,7 @@ Tasks:
             ○ Data persistence in instance EBS to avoid duplicate notifications in event of container failure (24 hour periods)
 
     Invoking the endpoint (Postman collection included):
+    
         - Container hosted on EC2 with public IP http://3.144.206.118:5000/
             - /predict --> 
                 - accepts csv file with content type multipart/form-data
@@ -51,21 +57,29 @@ Tasks:
                 - returns RMSE and serialized prediction ndarray
 
     Alternate approach (production deployment strategy):
+    
         - Full CI/CD pipelines for dev/uat/prod environments
             - Jenkins pipeline to run Terraform deployments for AWS Sagemaker Endpoints
+            
         - Sagemaker configuration --> signed requests to endpoint
+        
             - Inference Endpoint --> two options
+            
                 - Real-time inference --> if sending csv data under 5 MB as request payload
+
                     - Preprocessing script runs input data validations, constructs prediciton input tensors
+
                 - Async inference --> if sending tensor data over 5 MB as 
+
                     - Inputs and outputs to specified s3 location
                     - Use case limited since results are required in near real time
 
         - A/B testing for Prod release --> split model traffic in production between new and legacy endpoints
+        
             - Gradually increase traffic to new endpoint as more valid results come in
             - Decommission legacy endpoint when 100% of traffic is routed to new endpoint
 
-    ** I've included a quick mock up of the terraform configuration that would be used to deploy these instances located in the branch "terraform-config" **
+   ### I've included a quick mock up of the terraform configuration that would be used to deploy these instances located in the branch "terraform-config"
 
 * Come up with tests for container or requests failure 
     - EC2 --> cron job runs on 5 minute cadence, sends notification if unavailable. Data persistence on instance will validate our 
@@ -81,9 +95,11 @@ Tasks:
     - Notification includes a request ID which can be referrenced in Flask logs on EC2 instance
 
 
+
 Questions for you to consider:
 
 * Does this data set even make sense? What's wrong with it?
+    - Limited training data set, more extrapolation required by model when outliers present
 * What makes this model unsuitable for inferencing in prod?
     - Security --> no signed requests
     - Validation --> A/B Testing

@@ -9,6 +9,7 @@ Here's a quick challenge for you to demonstrate your skills as a DataOps or Mach
 We have a sample model for predicing the price of Bitcoin in the next second based on the prices from the last 60 seconds whipped up by one of our data scientists - this is a quick and dirty model, wrapped in a quick and dirty API, packaged into a quick and dirty container, and we've decided to YOLO and test in prod.
 
 Tasks:
+
 * This is really quick and dirty - how would you do this better?
     Changes made to app.py:
         - Loaded h5 model in place of protocol buffer

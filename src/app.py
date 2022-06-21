@@ -14,7 +14,7 @@ def predict_result(last_sixty_seconds_of_prices):
 
 app = Flask(__name__)
 
-@app.route('/predict', methods=['POST'])
+@app.route('/invocations', methods=['POST'])
 def predict():   
     last_sixty_seconds = request.get('data')
     return jsonify(prediction=predict_result(last_sixty_seconds))   

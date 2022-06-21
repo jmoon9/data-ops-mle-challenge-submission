@@ -1,5 +1,5 @@
 variable "aws_region" {}
-variable "aws_deployment_account_number" {}
+
 variable "aws_access_key" {}
 variable "aws_secret_access_key"{}
 variable "environment" {}
@@ -50,5 +50,9 @@ variable "sagemaker_model_artifact_bucket_region" {
 
 variable "sagemaker_model_artifact_file_name" {
     type    = string
-    default = "bitcoin.tar.gz"
+    default = "model.tar.gz"
+}
+variable "aws_deployment_account_number" {
+    type    = string
+    default = "683339921237"
 }

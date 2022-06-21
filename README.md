@@ -14,8 +14,8 @@ Tasks:
         - Inference Endpoint
         - A/B testing for Prod release 
 * Come up with tests for container or requests failure
-    - Ping checks on endpoint
-    - Container failure
+    - Linux cron job --> run python script to check container availability
+
 * Come up with tests for data quality in this context
     - Accuracy --> Necessary fields are included
     - Relevancy --> requirements met (undefined)
@@ -24,17 +24,19 @@ Tasks:
     - Consistency --> Format check, cross referenceable with same results
 
 * Introduce slack alerts for failure of either of the above. Here's some sample code:
-    - SNS topic --> post a notification to when Sagemaker inference fails
-        - Inference Notification --> https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AsyncInferenceNotificationConfig.html
-        - Slack Webhook sns topic subscription --> https://stackoverflow.com/questions/49341187/confirming-aws-sns-topic-subscription-for-slack-webhook#:~:text=On%20your%20slack%20channel%2C%20add,provide%20the%20slack%20email%20above.
-        
 
 '''
-
+    cron job --> 5 minute cadence
     execution_frequency_minutes = 5
+
     slack_channel = getenv("OPS_NOTIFICATIONS_SLACK_CHANNEL", "debug-slackbot")
     # Ops only wants a single notification for the user for this check, even if they have subsequent rolling 24 hour deposits exceeding the `total_deposit_threshold`
     notification_deduping_row_keys = ['user_id', 'pam_user_id']
+
+    Hash Function --> sha256 to encrypt slack data, coupled with date
+        - Notification will only send if either:
+            - Slack notification is not duplicate, or
+            - Slack notification is duplicate and older than 24 hours
 
 '''
 
@@ -52,5 +54,5 @@ Questions for you to consider:
         - or include retry logic in inference/container configuration
 
 * What would happen if the price of bitcoin suddenly shot up by $10k at 3am? Would this model still be good? How would we catch this?
-    - Model would respond poorly to outlier cases due to recency bias 
-    - We can cache previous predictions and set a specific variance threshold for new results to send a slack notification
+    - Model would respond poorly to outlier cases due to limitations of training data
+    - Higher features imply more model influence on results --> set threshold of ndarray values, push slack notification if higher than ideal

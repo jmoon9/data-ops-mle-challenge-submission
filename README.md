@@ -1,8 +1,6 @@
-# data-ops-mle-challenge
+# data-ops-mle-challenge-submission
 
-Hi there!
-
-Here's a quick challenge for you to demonstrate your skills as a DataOps or Machine Learning Engineer. This is intended to be quick, light, easy, and fun - don't stress or spend too much time here! When done, feel free to share your solution via Github or other version control system.
+Here's my submission to the Penn Interactive data ops mle challenge.
 
 ## Problem
 

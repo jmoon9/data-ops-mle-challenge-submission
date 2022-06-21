@@ -1,13 +1,14 @@
 import sys
 import json
 import requests
+import os
 from flask import make_response
 
 class Validation:
     def __init__(self) -> None:
         pass
     
-    url = "https://hooks.slack.com/services/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"
+    url = os.environ['SLACK_URL']
     title = (f"Bitcoin Predictor Validation Failure")
     slack_data = {}
     columns = ['time_period_start', 'time_period_end', 'time_open', 'time_close', 'price_open', 'price_high', 'price_low', 'price_close', 'volume_traded', 'trades_count']

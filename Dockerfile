@@ -22,4 +22,6 @@ COPY model/ /model/
 RUN ls -la /src/*
 RUN ls -la /model/*
 
+EXPOSE 5000
+
 CMD ["python3", "/src/app.py"]
